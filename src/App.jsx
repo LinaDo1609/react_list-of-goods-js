@@ -15,10 +15,10 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-const SORT_FIELD_LENGTH = 'lenght';
+const SORT_FIELD_LENGTH = 'length';
 const SORT_FIELD_ALPHABET = 'alphabet';
 
-function getPreparedGoods(goods, { sortField }, { reverseFiels }) {
+function getPreparedGoods(goods, { sortField }, { reverseFields }) {
   const prepGoods = [...goods];
 
   if (sortField) {
@@ -34,7 +34,7 @@ function getPreparedGoods(goods, { sortField }, { reverseFiels }) {
     });
   }
 
-  if (reverseFiels) {
+  if (reverseFields) {
     return prepGoods.reverse();
   }
 
@@ -43,12 +43,12 @@ function getPreparedGoods(goods, { sortField }, { reverseFiels }) {
 
 export const App = () => {
   const [sortField, setSortField] = useState('');
-  const [reverseFiels, setReverse] = useState('');
+  const [reverseFields, setReverse] = useState('');
   const [reset, setReset] = useState(false);
   const goods = getPreparedGoods(
     goodsFromServer,
     { sortField },
-    { reverseFiels },
+    { reverseFields },
   );
 
   return (
@@ -86,9 +86,9 @@ export const App = () => {
 
         <button
           type="button"
-          className={reverseFiels ? 'button' : 'button is-info is-light'}
+          className={reverseFields ? 'button' : 'button is-info is-light'}
           onClick={() => {
-            setReverse(prevReverseFiels => !prevReverseFiels);
+            setReverse(prevreverseFields => !prevreverseFields);
             setReset(prevReset => (sortField ? true : !prevReset));
           }}
         >
@@ -111,8 +111,8 @@ export const App = () => {
       </div>
 
       <ul>
-        {goods.map(good => (
-          <li data-cy="Good" key={goodsFromServer.indexOf(good)}>
+        {goods.map((good) => (
+          <li data-cy="Good" key={good}>
             {good}
           </li>
         ))}
